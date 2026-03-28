@@ -1,0 +1,37 @@
+# --- Segurança e Segredos ---
+# Nunca suba suas chaves de API
+.streamlit/secrets.toml
+
+# --- Python ---
+# Ambiente virtual (Pasta .venv ou venv)
+.venv/
+venv/
+env/
+bin/
+lib/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Xadrez e Engine ---
+# Não suba o executável do Stockfish (cada sistema terá o seu)
+# Ignorar binários e pastas do Stockfish
+stockfish/
+stockfish*
+stockfish/stockfish*
+*.exe
+*.bin
+
+# --- Dados e Temporários ---
+# Se você baixar o livro de aberturas ou gerar áudios
+*.epd
+*.mp3
+*.log
+
+# --- Streamlit e IDEs ---
+.streamlit/config.toml
+.vscode/
+.idea/
+.DS_Store
+# Scripts de inicialização local
+*.sh
