@@ -30,25 +30,22 @@ No Windows/Mac: Baixe o executável oficial e adicione-o ao PATH do sistema.
 📦 Instalação
 Clone o repositório:
 
-Bash
 git clone https://github.com/SEU_USUARIO/analisador-xadrez-ia.git
 cd analisador-xadrez-ia
 Crie e ative um ambiente virtual:
 
-Bash
 python -m venv .venv
 source .venv/bin/activate  # No Windows: .venv\Scripts\activate
 Instale as dependências:
 
-Bash
 pip install -r requirements.txt
 Configure sua Chave API:
 Crie o arquivo .streamlit/secrets.toml e adicione sua chave do Groq:
 
 Ini, TOML
 GROQ_API_KEY = "sua_chave_aqui"
-🖥️ Como Usar
-Para rodar a aplicação, execute o comando abaixo no terminal:
+
+🖥️ Como Usar Para rodar a aplicação, execute o comando abaixo no terminal:
 
 Bash
 streamlit run app.py
