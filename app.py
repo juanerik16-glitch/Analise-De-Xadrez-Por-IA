@@ -6,6 +6,8 @@ import chess.svg
 import io
 import pandas as pd
 import base64
+import os  # Adicionado para corrigir o erro de 'os is not defined'
+import shutil
 from groq import Groq
 
 # --- CONFIGURAÇÕES DE API E ENGINE ---
@@ -17,21 +19,23 @@ else:
 client = Groq(api_key=GROQ_API_KEY)
 
 def _resolve_stockfish_path():
-    import shutil
-    from pathlib import Path
-    root = Path(__file__).resolve().parent
-    candidates = [
-        root / "stockfish" / "stockfish-ubuntu-x86-64",
-        "/usr/games/stockfish",
-        "/usr/bin/stockfish"
-    ]
+    """Busca o executável do Stockfish no sistema."""
+    # Tenta encontrar o 'stockfish' instalado globalmente no Linux (PATH)
+    which = shutil.which("stockfish")
+    if which:
+        return which # Removido o caractere estranho aqui
+        
+    # Fallback para caminhos comuns se o 'which' falhar
+    candidates = ["/usr/games/stockfish", "/usr/bin/stockfish"]
     for p in candidates:
-        if Path(p).is_file(): return str(p)
-    return shutil.which("stockfish")
+        if os.path.exists(p): # Agora o 'os' está importado corretamente
+            return p
+            
+    return None
 
 STOCKFISH_PATH = _resolve_stockfish_path()
 
-# --- CONFIGURAÇÃO DA PÁGINA (ESTILO CHESS.COM) ---
+# --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(page_title="Revisão da Partida - IA", layout="wide")
 
 # CSS para o tema escuro e o Coach Card
